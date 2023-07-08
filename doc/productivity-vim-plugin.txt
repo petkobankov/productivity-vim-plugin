@@ -45,19 +45,20 @@ https://github.com/AndrewRadev/productivity-vim-plugin.vim/releases.
 ==============================================================================
 USAGE                                                          *productivity-vim-plugin-usage*
 
-TODO
+This plugin is a to-do list with a maximum of 3 tasks for the day, each task has assigned pomodoros number and one of the tasks is a higher priority than the other two. You can add a task with expected pomodoro count with ":AddTask task-name pomodoro-count". You can see the current tasks with ":SeeTasks". With "SetAsPriority" it sets the tasks you are currently on from SeeTasks as the task with the higher priority. With ":SelectTask" we set a task from SeeTasks as the current one for which after a pomodoro is over, it's count will lower by 1. With ":StartPomodoro" we start a pomodoro timer and after it's over the count of the pomodoros of the current selected task is lowered by one. No more than 3 tasks can be added with AddTask. On the status bar there is only a signal that either a pomodoro timer is running, if it's break time or if no timer is running. Intentionally there is no exact countdown shown and no audio alerts on completion to not interrupt the flow. Because of that the user will use ":StartBreak" to start their break after a pomodoro has finished.
 
 
 ==============================================================================
 SETTINGS                                                    *productivity-vim-plugin-settings*
 
-TODO
+g:pomodoro_time - how long one pomodoro is in minutes. By default set to 25.
+g:break_time - how long each break is in minutes. By default 5 minutes.
 
 
 ==============================================================================
 INTERNALS                                                  *productivity-vim-plugin-internals*
 
-TODO
+Currently each task is stored in a dictionary g:tasks. The tasks on change are then stored in ~/.vimtasks and loaded when needed. When we call SeeTasks, the tasks are shown in a temp buffer, so the user can easily select for which task the called function showld work on. Once a function is called, it checks the line which the user is on and get's the name of the task. 
 
 ==============================================================================
 ISSUES                                                        *productivity-vim-plugin-issues*
