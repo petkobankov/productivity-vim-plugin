@@ -46,6 +46,8 @@ https://github.com/AndrewRadev/productivity-vim-plugin.vim/releases.
 USAGE                                                          *productivity-vim-plugin-usage*
 
 This plugin is a to-do list with a maximum of 3 tasks for the day, each task has assigned pomodoros number and one of the tasks is a higher priority than the other two. You can add a task with expected pomodoro count with ":AddTask task-name pomodoro-count". You can see the current tasks with ":SeeTasks". With "SetAsPriority" it sets the tasks you are currently on from SeeTasks as the task with the higher priority. With ":SelectTask" we set a task from SeeTasks as the current one for which after a pomodoro is over, it's count will lower by 1. With ":StartPomodoro" we start a pomodoro timer and after it's over the count of the pomodoros of the current selected task is lowered by one. No more than 3 tasks can be added with AddTask. On the status bar there is only a signal that either a pomodoro timer is running, if it's break time or if no timer is running. Intentionally there is no exact countdown shown and no audio alerts on completion to not interrupt the flow. Because of that the user will use ":StartBreak" to start their break after a pomodoro has finished.
+Also you can toggle SeeTasks with 'gb'. After that the task you are on, once you press enter it is selected as if writing 'SelectTasks'.
+With 'CompleteTask' the current task is marked as completed and deleted. This way we can focus on other tasks. 
 
 
 ==============================================================================
@@ -59,6 +61,14 @@ g:break_time - how long each break is in minutes. By default 5 minutes.
 INTERNALS                                                  *productivity-vim-plugin-internals*
 
 Currently each task is stored in a dictionary g:tasks. The tasks on change are then stored in ~/.vimtasks and loaded when needed. When we call SeeTasks, the tasks are shown in a temp buffer, so the user can easily select for which task the called function showld work on. Once a function is called, it checks the line which the user is on and get's the name of the task. 
+let g:tasks = Here all the tasks are stored, a dictionary. 
+let g:priority_task = This has the name of the task we have picked as priority.
+let g:current_task = This has the name of the task we have picked as the current one. Most functions needing a task use this one.
+let g:can_have_break = If no pomodoro has been run, it stays false. After a pomodoro is over it goes to true. After a break it goes to false.
+let g:timer_running = If a break timer or pomodoro timer is running this is true. It's purpose is to not have more than one timer running.
+let g:pomodoro_timer = Minutes of a pomodoro timer. Default is 25.
+let g:break_timer = Minutes of a break timer. Default is 5.
+let g:current_status = The text for the status line. By default is 'no_timer'. If a pomodoro timer is running it is 'pomodoro'. If a break timer is running it is 'break'.
 
 ==============================================================================
 ISSUES                                                        *productivity-vim-plugin-issues*
