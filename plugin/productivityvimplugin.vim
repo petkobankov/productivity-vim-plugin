@@ -3,7 +3,14 @@ if exists('g:loaded_productivity_vim_plugin') || &cp
 endif
 
 let g:loaded_productivity_vim_plugin = '0.0.1' " version number
+if !exists('g:pomodoro_timer')
+  let g:pomodoro_timer = 25
+endif
+if !exists('g:break_timer')
+  let g:break_timer = 5
+endif
 let s:keepcpo = &cpo
+
 set cpo&vim
 
 command! -nargs=* AddTask call productivityvimplugin#AddTaskWithPomodoros(<f-args>)
