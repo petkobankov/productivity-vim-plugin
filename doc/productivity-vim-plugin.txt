@@ -61,14 +61,14 @@ g:break_time - how long each break is in minutes. By default 5 minutes.
 INTERNALS                                                  *productivity-vim-plugin-internals*
 
 Currently each task is stored in a dictionary g:tasks. The tasks on change are then stored in ~/.vimtasks and loaded when needed. When we call SeeTasks, the tasks are shown in a temp buffer, so the user can easily select for which task the called function showld work on. Once a function is called, it checks the line which the user is on and get's the name of the task. 
-let g:tasks = Here all the tasks are stored, a dictionary. 
-let g:priority_task = This has the name of the task we have picked as priority.
-let g:current_task = This has the name of the task we have picked as the current one. Most functions needing a task use this one.
-let g:can_have_break = If no pomodoro has been run, it stays false. After a pomodoro is over it goes to true. After a break it goes to false.
-let g:timer_running = If a break timer or pomodoro timer is running this is true. It's purpose is to not have more than one timer running.
-let g:pomodoro_timer = Minutes of a pomodoro timer. Default is 25.
-let g:break_timer = Minutes of a break timer. Default is 5.
-let g:current_status = The text for the status line. By default is 'no_timer'. If a pomodoro timer is running it is 'pomodoro'. If a break timer is running it is 'break'.
+let s:tasks = Here all the tasks are stored, a dictionary. 
+let s:priority_task = This has the name of the task we have picked as priority.
+let s:current_task = This has the name of the task we have picked as the current one. Most functions needing a task use this one.
+let s:can_have_break = If no pomodoro has been run, it stays false. After a pomodoro is over it goes to true. After a break it goes to false.
+let s:timer_running = If a break timer or pomodoro timer is running this is true. It's purpose is to not have more than one timer running.
+let s:pomodoro_timer = Minutes of a pomodoro timer. Default is 25.
+let s:break_timer = Minutes of a break timer. Default is 5.
+let s:current_status = The text for the status line. By default is 'no_timer'. If a pomodoro timer is running it is 'pomodoro'. If a break timer is running it is 'break'.
 
 ==============================================================================
 ISSUES                                                        *productivity-vim-plugin-issues*
